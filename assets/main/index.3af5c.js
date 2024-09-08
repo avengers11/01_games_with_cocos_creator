@@ -4544,6 +4544,7 @@ window.__require = function e(t, n, r) {
         tokens = urlParams["token"];
         gameScene = urlParams["gameScene"];
         userId = urlParams["userId"] ? urlParams["userId"] : 1;
+        console.log(userId);
         this.sendDataToBackend({
           gameScene: gameScene,
           gameScale: gameScale,
