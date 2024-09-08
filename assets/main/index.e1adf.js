@@ -4753,8 +4753,8 @@ window.__require = function e(t, n, r) {
             _this3.startGame();
           }
         };
-        xhr.onerror = function() {
-          console.error("Request failed");
+        xhr.onerror = function(e) {
+          console.log(e);
         };
         xhr.send();
       },
