@@ -4454,7 +4454,7 @@ window.__require = function e(t, n, r) {
     cc._RF.push(module, "2e6bd1ggFFI8bqeZ3TZ9K56", "main");
     "use strict";
     var io = require("socket.io-client");
-    var localhost = "https://games.sfinvco.com";
+    var localhost = "https://game-backend.sfinvco.com";
     var socketUrl = localhost + "/gready";
     var coin = 1;
     var coinAmount = 500;
