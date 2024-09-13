@@ -4469,6 +4469,10 @@ window.__require = function e(t, n, r) {
     cc.Class({
       extends: cc.Component,
       properties: {
+        MainGameController: {
+          type: cc.Node,
+          default: null
+        },
         updateTime: cc.Label,
         boardAnimation: {
           default: null,
@@ -4538,21 +4542,21 @@ window.__require = function e(t, n, r) {
         }
       },
       onLoad: function onLoad() {
-        var queryString = window.location.search.substring(1);
-        var urlParams = this.parseQueryString(queryString);
-        gameScale = urlParams["mini"];
-        tokens = urlParams["token"];
-        gameScene = urlParams["gameScene"];
-        userId = urlParams["userId"] ? urlParams["userId"] : 1;
-        console.log(userId);
-        this.sendDataToBackend({
-          gameScene: gameScene,
-          gameScale: gameScale,
-          userId: userId,
-          tokens: tokens
-        });
-        var sceneToLoad = gameScene || "gready_games";
-        "gready_games" != sceneToLoad && this.loadGameScene(sceneToLoad);
+        if (window.innerHeight > 500) {
+          var widget = this.MainGameController.getComponent(cc.Widget);
+          widget || (widget = this.MainGameController.addComponent(cc.Widget));
+          widget.isAlignBottom = true;
+          widget.bottom = 400;
+          widget.isAlignTop = false;
+          widget.isAlignVerticalCenter = false;
+          this.MainGameController.setAnchorPoint(.5, 0);
+          widget.alignMode = cc.Widget.AlignMode.ON_WINDOW_RESIZE;
+          var canvas = this.node.getComponent(cc.Canvas);
+        }
+        return false;
+        var queryString;
+        var urlParams;
+        var sceneToLoad;
       },
       startGame: function startGame() {
         var _this = this;
